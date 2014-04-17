@@ -55,6 +55,12 @@
     <Compile Include="FloorConfigForm.Designer.cs">
       <DependentUpon>FloorConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="hotelmangement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="hotelmangement.Designer.cs">
+      <DependentUpon>hotelmangement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hotel.cs" />
     <Compile Include="House.cs" />
     <Compile Include="HouseConfigForm.cs">
@@ -69,6 +75,9 @@
     <Compile Include="Room.cs" />
     <EmbeddedResource Include="FloorConfigForm.resx">
       <DependentUpon>FloorConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="hotelmangement.resx">
+      <DependentUpon>hotelmangement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HouseConfigForm.resx">
       <DependentUpon>HouseConfigForm.cs</DependentUpon>

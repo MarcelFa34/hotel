@@ -11,7 +11,7 @@ namespace OSZ_Hotel {
 	public class Room {
 		// Member
 		private int roomNumber;
-		private Status status = Status.free;
+		private string status;
 		private int capacity;
 		private RoomType roomType;
 		private Bill bill;
@@ -22,7 +22,7 @@ namespace OSZ_Hotel {
 		}
 
 		// Eigenschaften
-		public Status Status {
+		public string Status {
 			get;
 			set;
 		}
