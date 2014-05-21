@@ -10,6 +10,10 @@ using System.Windows.Forms;
 namespace OSZ_Hotel {
 	public partial class floorConfigForm : Form {
     public string hotelName;
+    public int floorCounter { get; set; }
+    private List<int> raumanzahlen = new List<int>();
+
+
 		public floorConfigForm() {
 			InitializeComponent();
 		}
@@ -46,15 +50,15 @@ namespace OSZ_Hotel {
 
 		private void txt_numberCount_TextChanged(object sender, EventArgs e) {
 			//checkInput();
-      button_next.Enabled = true;
+         button_next.Enabled = true;
 		}
 
-		/*void checkInput() {
+		void checkInput() {
 			bool setWarning = false;
 			int roomCount = 0;
-			if(txt_numberCount.Text != "") {
+			if(textbox_count1.Text != "") {
 			try {
-				roomCount = Convert.ToInt32(txt_numberCount.Text);
+                roomCount = Convert.ToInt32(textbox_count1.Text);
 			} catch(FormatException) {
 				setWarning = true;
 			}
@@ -71,7 +75,7 @@ namespace OSZ_Hotel {
                 setWarning = false;
                 lb_warningFloor.Text = "";
 			}
-		}*/
+		}
 
         private void floorConfigForm_Load(object sender, EventArgs e)
         {
@@ -91,24 +95,26 @@ namespace OSZ_Hotel {
 
         private void button_next_Click_2(object sender, EventArgs e)
         {
-           //hotelName = txt_hotelName.Text;
-          hotelmangement management = new hotelmangement();
-          //floorConfig.hotelName = hotelName;
-          List<int> raumAnzahl = new List<int>();
-          int ersteEtage = Convert.ToInt32(textbox_count1.Text);
-          //int zweiteEtage = Convert.ToInt32(textbox_count2.Text);
-          //int dritteEtage = Convert.ToInt32(textbox_count3.Text);
-          //int vierteEtage = Convert.ToInt32(textbox_count4.Text);
-          //int fuenfteEtage = Convert.ToInt32(textbox_count5.Text);
-          raumAnzahl.Add(ersteEtage);
-          //raumAnzahl.Add(zweiteEtage);
-          //raumAnzahl.Add(dritteEtage);
-         // raumAnzahl.Add(vierteEtage);
-          //raumAnzahl.Add(fuenfteEtage);
-          management.etagenHausAnzahl = raumAnzahl;
+            Dictionary<int, TextBox> textboxen = new Dictionary<int, TextBox>();
+           
+            textboxen.Add(1, textbox_count1);
+            textboxen.Add(2, textbox_count2);
+            textboxen.Add(3, textbox_count3);
+            textboxen.Add(4, textbox_count4);
+            textboxen.Add(5, textbox_count5);
+            for (int i = 1; i <= floorCounter; i++) 
+            {
+                raumanzahlen.Add( Convert.ToInt32( textboxen[i].Text ));
+            }
+
+            hotelmangement management = new hotelmangement(raumanzahlen);
+          
+            
+          management.hotelName = hotelName;
+          management.Text = hotelName;
           management.Show();
           this.Visible = false;
-         // etagenHausAnzahl
+
         }
 	}
 }

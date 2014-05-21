@@ -11,51 +11,54 @@ namespace OSZ_Hotel
 {
     public partial class hotelmangement : Form
     {
-        public List<int> etagenHausAnzahl = new List<int>();
+        private Dictionary<int, int> etagen2raeume = new Dictionary<int, int>();
+        public int etagenanzahl;
+        public Dictionary<int, Room> customer = new Dictionary<int, Room>();
+       
+        private List<int> raumanzahlen {get; set;}
+
         public Dictionary<int, Room> etage1dict = new Dictionary<int, Room>();
+        public Dictionary<int, Room> etage2dict = new Dictionary<int, Room>();
+        public Dictionary<int, Room> etage3dict = new Dictionary<int, Room>();
+        public Dictionary<int, Room> etage4dict = new Dictionary<int, Room>();
+        public Dictionary<int, Room> etage5dict = new Dictionary<int, Room>();
+
         public Dictionary<int, Button> buttonDict = new Dictionary<int, Button>();
+
         public List<Room> roomList1 = new List<Room>();
+        public List<Floor> etagenList = new List<Floor>();
+        public List<House> hausList = new List<House>();
         public Button aktuellerRaum;
-        public hotelmangement()
+        public string hotelName;
+        public hotelmangement(List<int> list)
         {
             InitializeComponent();
-            currentRoom_label.Text = "Aktueller Raum :";
+           // notiz_textbox.Text = Convert.ToString( etagen2raeume[1] );
             currentFloor_combobox.SelectedIndex = currentFloor_combobox.Items.IndexOf("Etage 1");
-            for (int i = 0; i <= 25; i++)
+            
+
+            for (int i = 0; i <= list[0]; i++)
             {
                 etage1dict.Add(i, new Room(i));
+                etage1dict[i].Status = "Frei";
                 roomList1.Add(etage1dict[i]);
             }
-            Floor etage1 = new Floor(1, roomList1);
-            buttonDict.Add(1, button1);
-            buttonDict.Add(2, button2);
-            buttonDict.Add(3, button3);
-            buttonDict.Add(4, button4);
-            buttonDict.Add(5, button5);
-            buttonDict.Add(6, button6);
-            buttonDict.Add(7, button7);
-            buttonDict.Add(8, button8);
-            buttonDict.Add(9, button9);
-            buttonDict.Add(10, button10);
-            buttonDict.Add(11, button11);
-            buttonDict.Add(12, button12);
-            buttonDict.Add(13, button13);
-            buttonDict.Add(14, button14);
-            buttonDict.Add(15, button15);
-            buttonDict.Add(16, button16);
-            buttonDict.Add(17, button17);
-            buttonDict.Add(18, button18);
-            buttonDict.Add(19, button19);
-            buttonDict.Add(20, button20);
-            buttonDict.Add(21, button21);
-            buttonDict.Add(22, button22);
-            buttonDict.Add(23, button23);
-            buttonDict.Add(24, button24);
-            buttonDict.Add(25, button25);
-            for (int i = 1; i <= 25; i++)
+
+
+            for (int i = 1; i <= list[0]; i++)
             {
-                buttonDict[i].Click += new EventHandler(roomClick);
+                Button neuer_button = new Button();
+                neuer_button.Name = "zimmerbutton" + i;
+                neuer_button.Text = "Zimmer " + i;
+                neuer_button.BackColor = System.Drawing.Color.Green;
+                neuer_button.Click += new EventHandler(roomClick);
+                button_holder.Controls.Add(neuer_button);
             }
+              
+
+               
+            
+            
         }
          
         private void button25_Click(object sender, EventArgs e)
@@ -67,26 +70,49 @@ namespace OSZ_Hotel
         {
 
         }
+        public void addEtagen2Room(int a, int b){
+            etagen2raeume.Add(a, b);
+        }
 
         void roomClick(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            //aktuellerRaum.BackColor
             aktuellerRaum = button;
-            string a = button.Name;
-            a = a.Replace("button", "");
-            int b = Convert.ToInt32(a);
-            //etage1dict[b].
+            string aktuellerbuttonname = button.Name;
+            aktuellerbuttonname = aktuellerbuttonname.Replace("zimmerbutton", "");
+            int b = Convert.ToInt32(aktuellerbuttonname);
             
-            currentRoom_label.Text = "Aktueller Raum : "+Convert.ToString(b);
-            textBox2.Text = etage1dict[b].Status;
+            currentRoomNumber_label.Text = Convert.ToString(b);
+            status_combobox.SelectedIndex = status_combobox.Items.IndexOf(etage1dict[b].Status);
+            notiz_textbox.Text = etage1dict[b].Notiz;
 
         }
 
         private void saveRoom_button_Click(object sender, EventArgs e)
         {
-            int zahl = Convert.ToInt32(textBox1.Text);
-            etage1dict[zahl].Status = textBox2.Text;
+            int zahl = Convert.ToInt32(currentRoomNumber_label.Text);
+            etage1dict[zahl].Status = status_combobox.Text;
+            etage1dict[zahl].Notiz = notiz_textbox.Text;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void currentFloor_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveCustomer_button_Click(object sender, EventArgs e)
+        {
+            Customer a = new Customer();
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

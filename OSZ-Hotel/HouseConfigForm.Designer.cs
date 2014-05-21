@@ -59,9 +59,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Häuseranzahl:";
+            this.label1.Text = "Etagenanzahl";
             // 
             // txt_houseCount
             // 
@@ -107,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(301, 127);
+            this.ClientSize = new System.Drawing.Size(312, 134);
             this.Controls.Add(this.lb_warning);
             this.Controls.Add(this.btn_nextHotelConfig);
             this.Controls.Add(this.label2);
@@ -132,7 +132,7 @@
         private System.Windows.Forms.TextBox txt_houseCount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_nextHotelConfig;
-		private System.Windows.Forms.Label lb_warning;
+        private System.Windows.Forms.Label lb_warning;
     }
 }
 

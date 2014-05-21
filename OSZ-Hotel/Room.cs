@@ -15,14 +15,20 @@ namespace OSZ_Hotel {
 		private int capacity;
 		private RoomType roomType;
 		private Bill bill;
+        private string notiz;
 
 		// Konstruktor
 		public Room(int roomNumber) {
 			this.roomNumber = roomNumber;
+            this.Notiz = "default";
 		}
 
 		// Eigenschaften
 		public string Status {
+			get;
+			set;
+		}
+        public string Notiz {
 			get;
 			set;
 		}

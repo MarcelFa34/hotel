@@ -16,7 +16,6 @@ namespace OSZ_Hotel
       InitializeComponent();
     }
     public string hotelName = string.Empty;
-    public int houseCount = 0;
     public int floorCount = 0;
 
     private void txt_hotelName_TextChanged(object sender, EventArgs e)
@@ -36,7 +35,7 @@ namespace OSZ_Hotel
       {
         try
         {
-          houseCount = Convert.ToInt32(txt_houseCount.Text);
+          floorCount = Convert.ToInt32(txt_houseCount.Text);
         }
         catch (Exception e)
         {
@@ -44,7 +43,7 @@ namespace OSZ_Hotel
           MessageBox.Show("ljkbsdf" + e.Message + Environment.NewLine + e.Source);
         }
 
-        if (houseCount <= 5 && houseCount > 0)
+        if (floorCount <= 5 && floorCount > 0)
         {
           btn_nextHotelConfig.Enabled = true;
         }
@@ -72,8 +71,9 @@ namespace OSZ_Hotel
       hotelName = txt_hotelName.Text;
       floorConfigForm floorConfig = new floorConfigForm();
       floorConfig.hotelName = hotelName;
-      floorConfig.enpanel(houseCount);
+      floorConfig.enpanel(this.floorCount);
       floorConfig.Text = floorConfig.hotelName;
+      floorConfig.floorCounter = this.floorCount;
       floorConfig.Show();
       this.Visible = false;
     }
